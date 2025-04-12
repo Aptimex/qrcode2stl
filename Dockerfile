@@ -11,21 +11,12 @@ RUN apt-get update && apt-get -y install \
 RUN git clone --single-branch --depth 1 https://github.com/savvyaxl/qrcode2stl.git .
 
 RUN npm install --location=global http-server
-<<<<<<< HEAD
-
-RUN yarn
-RUN yarn run build; exit 0
-RUN yarn run build
-=======
->>>>>>> c6952d1 ( test)
-
-#RUN npm install @vue/cli 
 
 RUN yarn
 RUN yarn run build; exit 0
 RUN yarn run build
 
-#RUN mkdir www && mv dist/ www/qrcode2stl/
+RUN mkdir www && mv dist/ www/qrcode2stl/
 
 EXPOSE 8080
 CMD [ "http-server", "www" ]
