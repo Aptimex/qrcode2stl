@@ -3,9 +3,9 @@
   "version": "1.11.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service --openssl-legacy-provider serve",
-    "build": "vue-cli-service --openssl-legacy-provider build",
-    "lint": "vue-cli-service --openssl-legacy-provider lint"
+    "serve": "vue-cli-service serve --openssl-legacy-provider",
+    "build": "vue-cli-servicebuild --openssl-legacy-provider ",
+    "lint": "vue-cli-servicelint --openssl-legacy-provider "
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
