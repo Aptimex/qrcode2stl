@@ -9,7 +9,7 @@ services:
     ports:
       - 8082:8080
     security_opt:
-      - apparmor:docker-default
+      #- apparmor:docker-default
       - no-new-privileges
     cpu_shares: 100
     pids_limit: 100
