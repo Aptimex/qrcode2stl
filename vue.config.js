@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-
+/* https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported */
 /**
  * The MD4 algorithm is not available anymore in Node.js 17+ (because of library SSL 3).
  * In that case, silently replace MD4 by the MD5 algorithm.
