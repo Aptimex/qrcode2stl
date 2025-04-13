@@ -11,9 +11,9 @@ services:
     security_opt:
       #- apparmor:docker-default
       - no-new-privileges
-    cpu_shares: 100
-    pids_limit: 100
-    mem_limit: 256m
-    memswap_limit: 64m
-    mem_reservation: 64m
-    read_only: true
+    #cpu_shares: 100
+    #pids_limit: 100
+    #mem_limit: 256m
+    #memswap_limit: 64m
+    #mem_reservation: 64m
+    #read_only: true
