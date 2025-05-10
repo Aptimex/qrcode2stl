@@ -12,6 +12,3 @@ docker compose up --build -d
 ```
 
 Server will be accessible on port 8082. 
-
-Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
