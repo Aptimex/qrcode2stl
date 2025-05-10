@@ -289,15 +289,13 @@ export default {
     },
     exportSTL() {
       this.exportModalVisible = true;
-      setTimeout(() => {
-        if (this.mode === 'QR') {
-          this.$refs.qrcode.exportSTL(this.stlType, this.multipleParts);
-        } else if (this.mode === 'Spotify') {
-          this.$refs.spotifycode.exportSTL(this.stlType, this.multipleParts);
-        } else if (this.mode === 'Text') {
-          this.$refs.text.exportSTL(this.stlType, this.multipleParts);
-        }
-      }, 5000);
+      if (this.mode === 'QR') {
+        this.$refs.qrcode.exportSTL(this.stlType, this.multipleParts);
+      } else if (this.mode === 'Spotify') {
+        this.$refs.spotifycode.exportSTL(this.stlType, this.multipleParts);
+      } else if (this.mode === 'Text') {
+        this.$refs.text.exportSTL(this.stlType, this.multipleParts);
+      }
     },
     renderPNG() {
       this.exportModalVisible = true;
