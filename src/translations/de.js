@@ -31,8 +31,6 @@ export default {
   right: 'rechts',
   content: 'Inhalt',
   thankYou: 'Vielen Dank für die Unterstützung. Du rockst!',
-  promotionTitle: 'Du willst ins 3D-Druck Hobby einsteigen oder suchst nach einem zweiten/dritten 3D-Drucker?',
-  promotionSubtitle: 'Hier sind ein paar meiner Vorschläge für 3D-Drucker und Zubehörteile. Wenn du die Entwicklung dieses Tools unterstützen möchtest, würde ich mich freuen wenn du einen der unten stehenden Links benutzt um auf AliExpress zu bestellen.',
   corner: 'Ecke',
   isGenerating: 'Generiere 3D Modell...',
   copyExistingQRCode: 'Kopiere einen existierenden QR Code',

@@ -31,8 +31,6 @@ export default {
   min: 'min',
   max: 'max',
   thankYou: 'Velice Vám děkuji za podporu. Jste úžasní!',
-  promotionTitle: 'Chteli byste začít s novým koníčkem? Nebo sháníte druhou/třetí tiskárnu?',
-  promotionSubtitle: 'Zde je pár doporučení na 3D tiskárny a doplňky. Pokud byste chtěli podpořit tento projekt, zvažte použití odkazů na AliExpress.',
   corner: 'roh',
   isGenerating: 'Vytváření 3D Modelu',
 

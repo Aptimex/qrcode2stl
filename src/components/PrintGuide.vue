@@ -75,21 +75,7 @@
 </template>
 
 <script>
-import { getRandomBanner } from '../utils';
-
 export default {
-  data() {
-    return {
-      banner1: '',
-      banner2: '',
-      banner3: '',
-    };
-  },
-  mounted() {
-    this.banner1 = getRandomBanner('300x600');
-    this.banner2 = getRandomBanner('300x600');
-    this.banner3 = getRandomBanner('300x600');
-  },
 };
 </script>
 

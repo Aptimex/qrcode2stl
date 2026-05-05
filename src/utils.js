@@ -127,5 +127,3 @@ export const trimCanvas = (function () {
     return copy;
   };
 }());
-
-export const getRandomBanner = () => '';

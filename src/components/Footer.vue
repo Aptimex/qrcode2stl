@@ -11,10 +11,6 @@
         <a href="https://twitter.com/flxnde" target="_blank" rel="noopener nofollow"><i class="fab fa-twitter"></i> Twitter</a>
         or on
         <a href="https://github.com/flxn" target="_blank" rel="noopener nofollow"><i class="fab fa-github"></i> Github</a>
-        or if you really like it you can even
-        <a href="https://paypal.me/fstein42" target="_blank" rel="noopener nofollow">
-          💵☕️ buy me a coffee
-        </a>
       </p>
       <p>
         If you need help or have some great idea, you can write me a mail:

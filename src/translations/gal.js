@@ -31,8 +31,6 @@ export default {
   min: 'min',
   max: 'max',
   thankYou: 'Moitas grazas pola axuda. Es a caña!',
-  promotionTitle: 'Queres comezar un novo hobbie? Andas a búsqueda dunha segunda/terceira impresora 3d?',
-  promotionSubtitle: 'Aquí hai varias impresoras 3D e accesorios. Se queres aopoiar o desarrollo de esta ferramenta por favor, considera utilizar estas ligazóns para mercar en AliExpress.',
   corner: 'esquina',
   isGenerating: 'Xerando modelo 3D...',
   copyExistingQRCode: 'Copia un código QR existente',

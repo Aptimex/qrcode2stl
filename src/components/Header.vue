@@ -20,9 +20,6 @@
     </div>
     <div class="navbar-menu" :class="{ 'is-active': navbarOpen }">
 
-    <!-- qrcode2stl Header -->
-    <div v-html="headerAd"></div>
-
       <div class="navbar-end">
         <div class="navbar-item">
           <LanguageSelector />
@@ -39,26 +36,6 @@
         </div>
         <div class="navbar-item">
           <ShareButtons />
-        </div>
-        <div class="navbar-item" v-if="showThankYou">
-          <div class="buttons">
-            <a class="button is-danger" href="https://paypal.me/fstein42" target="_blank" @click="showThanks">
-              <span class="icon">
-                <i class="fa fa-heart"></i>
-              </span>
-              <span>Thank You!</span>
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item" v-if="!showThankYou">
-          <div class="buttons">
-            <a class="button" href="https://paypal.me/fstein42" target="_blank" @click="showThanks">
-              <span class="icon">
-                <i class="fab fa-paypal"></i>
-              </span>
-              <span>{{$t('supportMe')}}</span>
-            </a>
-          </div>
         </div>
         <div class="navbar-item">
           <div class="buttons">
@@ -103,19 +80,14 @@ export default {
   data() {
     return {
       navbarOpen: false,
-      showThankYou: false,
       appVersion: packageJson.version,
       newVersion: false,
-      headerAd: '',
       settingsModalVisible: false,
     };
   },
   methods: {
     toggleNavigation() {
       this.navbarOpen = !this.navbarOpen;
-    },
-    showThanks() {
-      this.showThankYou = true;
     },
     openChangelogModal() {
       bus.$emit('openChangelogModal');
@@ -125,9 +97,6 @@ export default {
     openSettingsModal() {
       this.settingsModalVisible = true;
     },
-  },
-  mounted() {
-    this.headerAd = document.getElementById('adsenseloader-header').innerHTML;
   },
   created() {
     const lastViewedVersion = window.localStorage.getItem('lastViewedVersion') || '';

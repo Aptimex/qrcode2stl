@@ -108,7 +108,6 @@
           <a class="title is-4" href="#faq"><i class="fa fa-angle-double-down"></i> {{$t('faqTitle')}}</a>
           <a class="title is-4" href="#changelog"><i class="fa fa-angle-double-down"></i> Changelog</a>
         </div>
-        <div v-html="modelAd" class="mt-4 has-text-centered"></div>
       </div>
     </article>
 
@@ -137,7 +136,7 @@ import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import changelog from '../../CHANGELOG.md?raw';
 import { bus } from '../main';
-import { getRandomBanner, saveAsArrayBuffer, trimCanvas } from '../utils';
+import { saveAsArrayBuffer, trimCanvas } from '../utils';
 import ChangelogModal from './ChangelogModal.vue';
 
 export default {
@@ -165,7 +164,6 @@ export default {
       changelog: changelog.split('\n').slice(3).join('\n'),
       exportModalVisible: false,
       isGenerating: false,
-      modelAd: '',
       exporter: null,
       camera: null,
       scene: null,
@@ -173,7 +171,6 @@ export default {
       grid: null,
       animationFrameId: null,
       animationTimer: null,
-      adblockEnabled: false,
     };
   },
   created() {
@@ -192,13 +189,6 @@ export default {
     });
   },
   mounted() {
-    // eslint-disable-next-line camelcase
-    if (typeof __google_ad_urls === 'undefined') {
-      this.adblockEnabled = true;
-      this.modelAd = getRandomBanner('728x90');
-    } else {
-      this.modelAd = document.getElementById('adsenseloader-model').innerHTML;
-    }
     this.initScene();
     this.startAnimation();
     this.exporter = new STLExporter();
