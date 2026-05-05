@@ -1,41 +1,16 @@
 # qrcode2stl
 
-Create QR codes and download them as \*.stl file for 3d printing.
+Create QR codes and download them as \*.stl files for 3d printing.
 
-![The Web App](https://flxn.de/images/qrcode2stl_screenshot.png)
+Fixed the docker configs to work out-of-the-box for self-hosting. 
 
-Go to https://qrcode2stl.printer.tools/ to try it out.
-
-Feel free to write an issue if you find a bug or have an idea for a new feature: https://github.com/flxn/qrcode2stl/issues
+Modified to remove the arbitrary wait times that were injected for displaying ads, so you don't have to deal with that when self-hosting this. Also pulled out most/all of the adsense and tracking stuff. 
 
 ## Project setup
-Install dependencies:
-```
-npm install
-```
-
-Compiles and hot-reload for development:
-```
-npm run serve
+```bash
+docker compose up --build -d
 ```
 
-Compiles and minifies for production:
-```
-npm run build
-```
+Server will be accessible on port 8082. 
 
-Lints and fixes files:
-```
-npm run lint
-```
-
-Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Contribute a translation
-To add a new translation:
-- Create a new file with the corresponding country code under *src/translations/*
-  (Example: for french this would be *src/translations/fr.js*)
-- Copy the content of the *src/translations/en.js* file into your newly created translation file
-- Translate the english strings into your language
-- In *src/translations/loader.js* import your new translation and add it to the exported object
+This fork is now based directly on the main https://github.com/flxn/qrcode2stl project to include all the lastest features, but GitHub still incorrectly shows it being based off another fork. See that project's README for usage details. 
