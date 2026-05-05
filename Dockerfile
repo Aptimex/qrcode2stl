@@ -14,7 +14,7 @@ RUN npm install -g http-server
 
 RUN npm install && npm run build
 
-RUN mkdir www && mv dist/ www/qrcode2stl/
+RUN mv dist www
 
 EXPOSE 8080
 CMD [ "http-server", "www" ]
