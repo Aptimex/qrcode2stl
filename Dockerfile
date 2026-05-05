@@ -1,4 +1,4 @@
-FROM node:lts-buster-slim
+FROM node:lts-bullseye-slim
 
 WORKDIR /usr/src/app
 
@@ -8,9 +8,11 @@ RUN apt-get update && apt-get -y install \
 	automake \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --single-branch --depth 1 https://github.com/flxn/qrcode2stl.git .
+COPY . .
 
-RUN npm install && npm install -g http-server && npm run build
+RUN npm install -g http-server
+
+RUN npm install && npm run build
 
 RUN mkdir www && mv dist/ www/qrcode2stl/
 

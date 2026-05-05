@@ -207,61 +207,23 @@
           </p>
         </div>
 
-        <!-- Results Summary with Thank You and Countdown -->
+        <!-- Results Summary -->
         <div v-if="showResults">
-          <div class="columns">
-            <div class="column" v-if="!adblockEnabled">
-              <div v-html="exportAd"></div>
+          <div class="content">
+            <div class="notification is-success" v-if="successCount > 0">
+              <i class="fas fa-check-circle"></i>
+              {{ $t('batchSuccessCount', { count: successCount }) }}
             </div>
-            <div class="column content">
-              <div class="notification is-success" v-if="successCount > 0">
-                <i class="fas fa-check-circle"></i>
-                {{ $t('batchSuccessCount', { count: successCount }) }}
-              </div>
-              <div class="notification is-danger" v-if="errorResults.length > 0">
-                <p><strong><i class="fas fa-times-circle"></i> {{ $t('batchErrorCount', { count: errorResults.length }) }}</strong></p>
-                <ul>
-                  <li v-for="(err, index) in errorResults.slice(0, 10)" :key="index">
-                    {{ $t('batchRowError', { row: err.row, error: err.error }) }}
-                  </li>
-                  <li v-if="errorResults.length > 10">
-                    {{ $t('batchMoreErrors', { count: errorResults.length - 10 }) }}
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Countdown and Thank You Message -->
-              <div v-if="successCount > 0" class="mt-4">
-                <p class="is-size-4">
-                  <progress class="progress is-small is-primary" max="100" v-if="countdownSeconds !== 0"></progress>
-                  <progress class="progress is-small is-primary" max="100" v-if="countdownSeconds === 0" value="100"></progress>
-                  <span v-if="countdownSeconds > 0">{{ $t('batchDownloadCountdown', { seconds: countdownSeconds }) }}</span>
-                  <span v-if="countdownSeconds === 0">{{ $t('batchDownloadStarting') }}</span>
-                </p>
-                <p v-if="!adblockEnabled">
-                  <br/>{{ $t('batchThankYou') }}
-                </p>
-                <p v-if="adblockEnabled">
-                  {{ $t('batchAdblockMessage') }}
-                  <br/>
-                  <br/>
-                  <a class="button" href="https://paypal.me/fstein42" target="_blank" v-if="!showingThankYou" @click="showThanks">
-                    <span class="icon">
-                      <i class="fab fa-paypal"></i>
-                    </span>
-                    <span>Support qrcode2stl</span>
-                  </a>
-                  <a class="button is-danger" href="https://paypal.me/fstein42" target="_blank" v-if="showingThankYou">
-                    <span class="icon">
-                      <i class="fa fa-heart"></i>
-                    </span>
-                    <span>{{ $t('thankYou') }}</span>
-                  </a>
-                  <br/>
-                  <br/>
-                  {{ $t('batchThankYou') }}
-                </p>
-              </div>
+            <div class="notification is-danger" v-if="errorResults.length > 0">
+              <p><strong><i class="fas fa-times-circle"></i> {{ $t('batchErrorCount', { count: errorResults.length }) }}</strong></p>
+              <ul>
+                <li v-for="(err, index) in errorResults.slice(0, 10)" :key="index">
+                  {{ $t('batchRowError', { row: err.row, error: err.error }) }}
+                </li>
+                <li v-if="errorResults.length > 10">
+                  {{ $t('batchMoreErrors', { count: errorResults.length - 10 }) }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -304,7 +266,7 @@ import qrcode from 'qrcode';
 import vcardjs from 'vcards-js';
 import merge from 'deepmerge';
 import JSZip from 'jszip';
-import { save, getRandomBanner } from '../utils';
+import { save } from '../utils';
 
 export default {
   name: 'BatchModeModal',
@@ -340,12 +302,6 @@ export default {
       errorResults: [],
       showResults: false,
       generatedFiles: [],
-      // Countdown and ad
-      countdownSeconds: 5,
-      countdownInterval: null,
-      adblockEnabled: false,
-      exportAd: '',
-      showingThankYou: false,
       hasAutoDownloaded: false,
     };
   },
@@ -397,49 +353,14 @@ export default {
       };
     },
   },
-  watch: {
-    countdownSeconds(newVal) {
-      if (newVal === 0 && this.successCount > 0 && !this.hasAutoDownloaded) {
-        this.hasAutoDownloaded = true;
-        this.downloadZip();
-      }
-    },
-  },
   methods: {
     close() {
-      this.stopCountdown();
       this.$emit('close');
     },
 
-    showThanks() {
-      this.showingThankYou = true;
-    },
-
     startCountdown() {
-      this.countdownSeconds = 5;
-      this.hasAutoDownloaded = false;
-
-      // Check for adblock
-      // eslint-disable-next-line camelcase
-      if (typeof __google_ad_urls === 'undefined') {
-        this.exportAd = getRandomBanner('300x250');
-      } else {
-        const adElement = document.getElementById('adsenseloader-export');
-        this.exportAd = adElement ? adElement.innerHTML : '';
-      }
-
-      this.countdownInterval = setInterval(() => {
-        if (this.countdownSeconds > 0) {
-          this.countdownSeconds -= 1;
-        }
-      }, 1000);
-    },
-
-    stopCountdown() {
-      if (this.countdownInterval) {
-        clearInterval(this.countdownInterval);
-        this.countdownInterval = null;
-      }
+      this.hasAutoDownloaded = true;
+      this.downloadZip();
     },
 
     truncateValue(value) {
@@ -1163,7 +1084,6 @@ export default {
     },
 
     reset() {
-      this.stopCountdown();
       this.batchModeType = 'simple';
       this.simpleTextInput = '';
       this.fileName = '';
@@ -1181,9 +1101,7 @@ export default {
       this.errorResults = [];
       this.showResults = false;
       this.generatedFiles = [];
-      this.countdownSeconds = 5;
       this.hasAutoDownloaded = false;
-      this.showingThankYou = false;
       if (this.$refs.fileInput) {
         this.$refs.fileInput.value = '';
       }
